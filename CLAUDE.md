@@ -54,12 +54,3 @@ Always use the `cn()` utility from `lib/utils.ts` for conditional class composit
 ### External Images
 `next.config.mjs` allows images from `media.licdn.com` (LinkedIn profile photos).
 
-## Screenshot Workflow
-
-When asked to modify or build UI:
-1. **Ask** the user to share a screenshot (reference design or current state).
-2. **Implement** the changes based on the screenshot.
-3. **Re-verify** — ask the user for an updated screenshot of the result and compare it against the reference. Identify any gaps.
-4. **Iterate** until the implementation is ≥99% visually accurate to the reference.
-
-Never assume a UI change is complete without at least one screenshot verification loop.
