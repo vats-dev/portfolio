@@ -8,7 +8,7 @@ export default function TechRadar() {
     return (
         <section className="py-24 bg-void overflow-hidden relative">
             <div className="max-w-4xl mx-auto px-6 text-center">
-                <h2 className="text-h2 font-display font-bold text-white mb-16">Values & Capabilities</h2>
+                <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-16">Values & Capabilities</h2>
 
                 <div className="relative w-[300px] h-[300px] md:w-[500px] md:h-[500px] mx-auto">
                     {/* Radar Circles */}

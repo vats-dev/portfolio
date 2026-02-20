@@ -32,7 +32,7 @@ export default function AboutSplit() {
                 <div className="md:hidden w-full h-full overflow-y-auto p-6 flex flex-col gap-12">
                     {/* Engineer Mobile */}
                     <div className="flex flex-col gap-4">
-                        <h2 className="text-h1 font-display font-medium text-azure">The Engineer</h2>
+                        <h2 className="text-3xl md:text-5xl font-display font-medium text-azure">The Engineer</h2>
                         <p className="text-body text-text-secondary">
                             Structuring chaos into logic. From scalable Azure architectures to responsive SPFx frontends.
                         </p>
@@ -41,7 +41,7 @@ export default function AboutSplit() {
 
                     {/* Artist Mobile */}
                     <div className="flex flex-col gap-4">
-                        <h2 className="text-h1 font-display font-medium text-beacon-orange">The Artist</h2>
+                        <h2 className="text-3xl md:text-5xl font-display font-medium text-beacon-orange">The Artist</h2>
                         <p className="text-body text-text-secondary">
                             Composing rhythm from noise. Music production teaches me the art of iteration and flow.
                         </p>
@@ -63,8 +63,8 @@ export default function AboutSplit() {
                         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
 
                         <div className="relative z-10">
-                            <h2 className="text-h1 font-display font-bold text-azure mb-2">The Engineer</h2>
-                            <p className="text-h3 font-mono text-white/60">3+ Years • Full-Stack • AI</p>
+                            <h2 className="text-3xl md:text-5xl font-display font-bold text-azure mb-2">The Engineer</h2>
+                            <p className="text-lg md:text-xl font-mono text-white/60">3+ Years • Full-Stack • AI</p>
                         </div>
 
                         <div className="relative z-10 my-8">
@@ -90,8 +90,8 @@ export default function AboutSplit() {
                         <div className="absolute inset-0 bg-gradient-to-br from-beacon-orange/5 to-transparent" />
 
                         <div className="relative z-10 text-right">
-                            <h2 className="text-h1 font-display font-bold text-beacon-orange mb-2">The Artist</h2>
-                            <p className="text-h3 font-mono text-white/60">Musician • Producer • Creator</p>
+                            <h2 className="text-3xl md:text-5xl font-display font-bold text-beacon-orange mb-2">The Artist</h2>
+                            <p className="text-lg md:text-xl font-mono text-white/60">Musician • Producer • Creator</p>
                         </div>
 
                         <div className="relative z-10 my-8 flex items-center justify-center flex-1">

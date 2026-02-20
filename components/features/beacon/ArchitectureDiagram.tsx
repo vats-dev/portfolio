@@ -7,7 +7,7 @@ export default function ArchitectureDiagram() {
         <div className="w-full max-w-5xl mx-auto px-4 my-16">
             <h3 className="text-h3 font-display font-bold text-white mb-12 text-center">System Architecture</h3>
 
-            <div className="relative w-full aspect-[16/9] md:aspect-[21/9] bg-surface/20 rounded-xl border border-white/5 p-8 flex items-center justify-between gap-4 overflow-x-auto">
+            <div className="relative w-full aspect-[auto] md:aspect-[21/9] bg-surface/20 rounded-xl border border-white/5 p-8 flex flex-col md:flex-row items-center justify-between gap-4 overflow-hidden md:overflow-x-auto">
 
                 {/* Layer 1: Frontend */}
                 <Node label="Frontend Layer" sub="SPFx + React" color="border-azure text-azure" delay={0}>
@@ -58,7 +58,7 @@ function Node({ label, sub, color, children, delay }: { label: string, sub: stri
 
 function Connector() {
     return (
-        <div className="flex-1 h-[2px] bg-white/10 min-w-[20px] relative overflow-hidden">
+        <div className="hidden md:flex flex-1 h-[2px] bg-white/10 min-w-[20px] relative overflow-hidden">
             <motion.div
                 className="absolute top-0 left-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-white/50 to-transparent"
                 animate={{ x: ["-100%", "200%"] }}

@@ -53,7 +53,7 @@ export default function HeroOverlay() {
                 style={{ opacity: opacity2, y: y2 }}
                 className="absolute left-4 md:left-24 max-w-2xl"
             >
-                <h2 className="text-h1 font-display font-bold leading-tight bg-gradient-to-r from-white to-text-secondary bg-clip-text text-transparent">
+                <h2 className="text-4xl md:text-6xl font-display font-bold leading-tight bg-gradient-to-r from-white to-text-secondary bg-clip-text text-transparent">
                     I build digital experiences<br />
                     that bridge <span className="text-beacon-orange">design</span> and <span className="text-azure">engineering</span>.
                 </h2>
@@ -64,11 +64,11 @@ export default function HeroOverlay() {
                 style={{ opacity: opacity3, y: y3 }}
                 className="absolute right-4 md:right-24 text-right max-w-2xl"
             >
-                <h2 className="text-h1 font-display font-bold leading-tight mb-6">
+                <h2 className="text-4xl md:text-6xl font-display font-bold leading-tight mb-6">
                     From SPFx frontends<br />
                     to <span className="text-azure">Azure</span> backends.
                 </h2>
-                <p className="text-h3 font-text text-text-secondary">
+                <p className="text-xl md:text-3xl font-text text-text-secondary">
                     With a relentless focus on <span className="text-emerald">user experience</span>.
                 </p>
             </motion.div>

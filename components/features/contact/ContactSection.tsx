@@ -17,12 +17,12 @@ export default function ContactSection() {
                 transition={{ duration: 0.8 }}
                 className="relative z-10 max-w-4xl"
             >
-                <h2 className="text-h1 font-display font-black text-white mb-6">
+                <h2 className="text-4xl md:text-6xl font-display font-black text-white mb-6">
                     Let's Build Something <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-beacon-orange to-purple-500">Amazing Together.</span>
                 </h2>
 
-                <p className="text-h3 text-text-secondary mb-12 max-w-2xl mx-auto">
+                <p className="text-xl md:text-3xl text-text-secondary mb-12 max-w-2xl mx-auto">
                     I'm always open to new opportunities, collaborations, and interesting technical challenges.
                 </p>
 

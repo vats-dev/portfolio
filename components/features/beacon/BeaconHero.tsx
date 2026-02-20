@@ -23,8 +23,7 @@ export default function BeaconHero() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "circOut" }}
-                className="text-hero font-display font-black leading-none bg-gradient-to-br from-white via-white to-white/50 bg-clip-text text-transparent mb-6"
+                className="text-[clamp(4rem,12vw,9rem)] font-display font-black leading-none bg-gradient-to-br from-white via-white to-white/50 bg-clip-text text-transparent mb-6"
             >
                 BEACON
             </motion.h2>
@@ -35,7 +34,7 @@ export default function BeaconHero() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-h2 font-display font-medium text-azure mb-8 max-w-3xl"
+                className="text-2xl md:text-5xl font-display font-medium text-azure mb-8 max-w-3xl"
             >
                 Intelligent Knowledge Hub for Enterprise
             </motion.p>

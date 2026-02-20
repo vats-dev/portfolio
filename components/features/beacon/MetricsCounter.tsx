@@ -28,7 +28,7 @@ const Counter = ({ value, suffix = "", prefix = "", label }: CounterProps) => {
     }, [isInView, value, motionValue]);
 
     return (
-        <div ref={ref} className="flex flex-col items-center p-6 bg-surface/30 backdrop-blur-sm border border-white/5 rounded-2xl min-w-[200px]">
+        <div ref={ref} className="flex flex-col items-center p-6 bg-surface/30 backdrop-blur-sm border border-white/5 rounded-2xl w-full lg:min-w-[200px]">
             <div className="text-4xl md:text-5xl font-display font-bold text-beacon-orange mb-2 flex items-baseline">
                 <span className="text-2xl mr-1 opacity-70">{prefix}</span>
                 <DisplayValue value={springValue} />

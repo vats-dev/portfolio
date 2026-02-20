@@ -36,7 +36,7 @@ export default function ProjectsGrid() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-h2 font-display font-bold text-white mb-16"
+                    className="text-3xl md:text-5xl font-display font-bold text-white mb-16"
                 >
                     Other Experiments
                 </motion.h2>

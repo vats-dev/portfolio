@@ -24,7 +24,7 @@ export default function MusicShowcase() {
                         <span className="font-mono text-sm uppercase tracking-widest">Sound Engineering</span>
                     </div>
 
-                    <h2 className="text-h2 font-display font-bold text-white">
+                    <h2 className="text-3xl md:text-5xl font-display font-bold text-white">
                         Where Code Meets Composition.
                     </h2>
 
