@@ -62,7 +62,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 className={cn(
-                    "pointer-events-auto flex items-center gap-1 px-4 py-2 rounded-full border border-white/10 backdrop-blur-md transition-colors duration-300",
+                    "pointer-events-auto flex items-center gap-0.5 sm:gap-1 px-1 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/10 backdrop-blur-md transition-colors duration-300 max-w-[calc(100vw-1rem)] overflow-x-auto no-scrollbar",
                     scrolled ? "bg-void/70" : "bg-white/5"
                 )}
             >
@@ -86,7 +86,7 @@ export default function Navbar() {
                                     scrollTo(link.id);
                                 }}
                                 className={cn(
-                                    "relative z-10 w-28 px-4 py-1.5 rounded-full text-sm font-mono border border-transparent bg-transparent transition-colors duration-200",
+                                    "relative z-10 w-[70px] sm:w-28 px-1 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-sm font-mono border border-transparent bg-transparent transition-colors duration-200",
                                     isActive
                                         ? "text-beacon-orange"
                                         : "text-text-secondary hover:text-white"

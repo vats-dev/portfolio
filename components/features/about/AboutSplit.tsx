@@ -29,11 +29,11 @@ export default function AboutSplit() {
             <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
 
                 {/* Mobile Layout (Stacked) */}
-                <div className="md:hidden w-full h-full overflow-y-auto p-6 flex flex-col gap-12">
+                <div className="md:hidden w-full h-full overflow-y-auto p-6 flex flex-col gap-12 pb-24">
                     {/* Engineer Mobile */}
-                    <div className="flex flex-col gap-4">
-                        <h2 className="text-3xl md:text-5xl font-display font-medium text-azure">The Engineer</h2>
-                        <p className="text-body text-text-secondary">
+                    <div className="flex flex-col gap-4 mt-8">
+                        <h2 className="text-3xl font-display font-medium text-azure">The Engineer</h2>
+                        <p className="text-sm text-text-secondary">
                             Structuring chaos into logic. From scalable Azure architectures to responsive SPFx frontends.
                         </p>
                         <SkillConstellation />
@@ -41,11 +41,29 @@ export default function AboutSplit() {
 
                     {/* Artist Mobile */}
                     <div className="flex flex-col gap-4">
-                        <h2 className="text-3xl md:text-5xl font-display font-medium text-beacon-orange">The Artist</h2>
-                        <p className="text-body text-text-secondary">
+                        <h2 className="text-3xl font-display font-medium text-beacon-orange">The Artist</h2>
+                        <p className="text-sm text-text-secondary">
                             Composing rhythm from noise. Music production teaches me the art of iteration and flow.
                         </p>
+
+                        {/* Mobile Artist Picture */}
+                        <div className="w-full h-[220px] rounded-xl overflow-hidden relative my-4">
+                            <img
+                                src="/artist-photo.jpg"
+                                alt="Artist photo"
+                                className="w-full h-full object-cover object-center"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-void/60 via-transparent to-void/30" />
+                        </div>
+
                         <WaveformVisualizer />
+                    </div>
+
+                    {/* Mobile Philosophy Footer */}
+                    <div className="text-center mt-4">
+                        <p className="text-sm italic text-text-muted">
+                            Where Engineering meets Artistry.
+                        </p>
                     </div>
                 </div>
 
