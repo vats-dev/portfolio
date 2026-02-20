@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { AudioProvider } from "@/lib/AudioContext";
 
 const inter = Inter({
   variable: "--font-text",
@@ -27,7 +28,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-text bg-void text-text-primary antialiased selection:bg-beacon-orange selection:text-white`}
       >
-        {children}
+        <AudioProvider>
+          {children}
+        </AudioProvider>
       </body>
     </html>
   );

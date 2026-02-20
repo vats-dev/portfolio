@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Linkedin, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { Mail, Linkedin } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 
 export default function ContactSection() {
     return (
-        <section className="min-h-[80vh] flex flex-col items-center justify-center bg-gradient-to-b from-void to-surface/20 relative overflow-hidden px-6 text-center">
+        <section id="connect" className="min-h-[80vh] flex flex-col items-center justify-center bg-gradient-to-b from-void to-surface/20 relative overflow-hidden px-6 text-center">
             {/* Background Glow */}
             <div className="absolute inset-0 bg-gradient-radial from-azure/5 to-transparent opacity-50 pointer-events-none" />
 
@@ -27,21 +27,17 @@ export default function ContactSection() {
                 </p>
 
                 <div className="flex flex-col md:flex-row gap-6 justify-center">
-                    <Link
-                        href="mailto:srivatsanrangan555@gmail.com"
-                        className="group relative px-8 py-4 bg-white text-void rounded-full font-bold text-lg flex items-center gap-3 hover:bg-gray-200 transition-colors"
-                    >
-                        <Mail /> Email Me
-                        <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-                    </Link>
+                    <InteractiveHoverButton
+                        text="Email Me"
+                        className="w-48 py-3 bg-white text-void hover:text-white rounded-full font-bold text-lg border-transparent transition-colors"
+                        onClick={() => { window.location.href = "mailto:srivatsanrangan555@gmail.com"; }}
+                    />
 
-                    <Link
-                        href="https://www.linkedin.com/in/srivatsan-rangan-00b2b430a/"
-                        target="_blank"
-                        className="group px-8 py-4 bg-azure/10 text-azure border border-azure/20 rounded-full font-bold text-lg flex items-center gap-3 hover:bg-azure/20 transition-colors"
-                    >
-                        <Linkedin /> LinkedIn Profile
-                    </Link>
+                    <InteractiveHoverButton
+                        text="LinkedIn Profile"
+                        className="w-56 py-3 bg-azure/10 text-azure hover:text-white border border-azure/20 rounded-full font-bold text-lg transition-colors"
+                        onClick={() => { window.open("https://www.linkedin.com/in/srivatsan-rangan-00b2b430a/", "_blank", "noopener,noreferrer"); }}
+                    />
                 </div>
 
             </motion.div>

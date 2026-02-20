@@ -1,109 +1,20 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Play, Pause, Music, Volume2 } from "lucide-react";
+import { Play, Pause, Music } from "lucide-react";
+import { useAudio } from "@/lib/AudioContext";
+
+const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+};
 
 export default function MusicShowcase() {
-    const audioRef = useRef<HTMLAudioElement>(null);
-    const [isPlaying, setIsPlaying] = useState(false);
-    const [progress, setProgress] = useState(0);
-    const [duration, setDuration] = useState(0);
-    const [currentTime, setCurrentTime] = useState(0);
-    const [autoplayBlocked, setAutoplayBlocked] = useState(false);
-
-    // Handle play/pause
-    const togglePlay = () => {
-        if (!audioRef.current) return;
-
-        if (isPlaying) {
-            audioRef.current.pause();
-        } else {
-            audioRef.current.play();
-        }
-        setIsPlaying(!isPlaying);
-        setAutoplayBlocked(false);
-    };
-
-    // Attempt autoplay on page load
-    useEffect(() => {
-        const audio = audioRef.current;
-        if (!audio) return;
-
-        const attemptAutoplay = () => {
-            audio.play()
-                .then(() => {
-                    setIsPlaying(true);
-                })
-                .catch(() => {
-                    // Autoplay blocked by browser - show prompt
-                    setAutoplayBlocked(true);
-                });
-        };
-
-        // Try autoplay after a short delay
-        const timer = setTimeout(attemptAutoplay, 500);
-        return () => clearTimeout(timer);
-    }, []);
-
-    // Update progress bar
-    useEffect(() => {
-        const audio = audioRef.current;
-        if (!audio) return;
-
-        const updateProgress = () => {
-            setCurrentTime(audio.currentTime);
-            setProgress((audio.currentTime / audio.duration) * 100);
-        };
-
-        const handleLoadedMetadata = () => {
-            setDuration(audio.duration);
-        };
-
-        const handleEnded = () => {
-            setIsPlaying(false);
-            setProgress(0);
-            if (audio) audio.currentTime = 0;
-        };
-
-        const handlePlay = () => setIsPlaying(true);
-        const handlePause = () => setIsPlaying(false);
-
-        audio.addEventListener('timeupdate', updateProgress);
-        audio.addEventListener('loadedmetadata', handleLoadedMetadata);
-        audio.addEventListener('ended', handleEnded);
-        audio.addEventListener('play', handlePlay);
-        audio.addEventListener('pause', handlePause);
-
-        return () => {
-            audio.removeEventListener('timeupdate', updateProgress);
-            audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
-            audio.removeEventListener('ended', handleEnded);
-            audio.removeEventListener('play', handlePlay);
-            audio.removeEventListener('pause', handlePause);
-        };
-    }, []);
-
-    // Format time as MM:SS
-    const formatTime = (time: number) => {
-        const minutes = Math.floor(time / 60);
-        const seconds = Math.floor(time % 60);
-        return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-    };
-
-    // Seek functionality
-    const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!audioRef.current) return;
-        const rect = e.currentTarget.getBoundingClientRect();
-        const percent = (e.clientX - rect.left) / rect.width;
-        audioRef.current.currentTime = percent * audioRef.current.duration;
-    };
+    const { isPlaying, togglePlay, progress, currentTime, duration, handleSeek } = useAudio();
 
     return (
-        <section className="py-24 px-6 bg-surface/20 border-t border-white/5 relative overflow-hidden">
-            {/* Hidden Audio Element */}
-            <audio ref={audioRef} src="/audio/aagayam-kaatadha.m4a" preload="metadata" />
-
+        <section id="music" className="py-24 px-6 bg-surface/20 border-t border-white/5 relative overflow-hidden">
             <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-center">
 
                 {/* Text Side */}
@@ -132,10 +43,11 @@ export default function MusicShowcase() {
 
                 {/* Player Side */}
                 <div className="flex-1 w-full max-w-md">
-                    <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.3)] relative overflow-hidden group"
+                    <div
+                        className="bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.3)] relative overflow-hidden group"
                         style={{
-                            background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
-                            boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 rgba(255,255,255,0.1)',
+                            background: "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
+                            boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 rgba(255,255,255,0.1)",
                         }}
                     >
                         {/* Album Art */}
@@ -188,13 +100,13 @@ export default function MusicShowcase() {
                                     className="flex-1 bg-white/20 rounded-t-sm"
                                     animate={{
                                         height: isPlaying ? ["20%", `${Math.random() * 80 + 20}%`, "20%"] : "20%",
-                                        backgroundColor: isPlaying ? "#FF6B35" : "rgba(255,255,255,0.2)"
+                                        backgroundColor: isPlaying ? "#FF6B35" : "rgba(255,255,255,0.2)",
                                     }}
                                     transition={{
                                         duration: 0.6,
                                         repeat: Infinity,
                                         delay: i * 0.05,
-                                        repeatType: "reverse"
+                                        repeatType: "reverse",
                                     }}
                                 />
                             ))}

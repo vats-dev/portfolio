@@ -25,7 +25,7 @@ export default function AboutSplit() {
     const gap = useTransform(splitProgress, [0, 1], ["0px", "24px"]);
 
     return (
-        <section ref={containerRef} className="relative min-h-[150vh] bg-void">
+        <section id="about" ref={containerRef} className="relative min-h-[150vh] bg-void">
             <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
 
                 {/* Mobile Layout (Stacked) */}

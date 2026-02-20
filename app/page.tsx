@@ -1,3 +1,4 @@
+import Navbar from "@/components/ui/Navbar";
 import ScrollyVideo from "@/components/features/hero/ScrollyVideo";
 import HeroOverlay from "@/components/features/hero/HeroOverlay";
 import ScrollIndicator from "@/components/features/hero/ScrollIndicator";
@@ -13,6 +14,7 @@ import Footer from "@/components/ui/Footer";
 export default function Home() {
   return (
     <main className="relative bg-void min-h-screen">
+      <Navbar />
       <ScrollIndicator />
 
       {/*

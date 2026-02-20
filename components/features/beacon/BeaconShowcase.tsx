@@ -8,7 +8,7 @@ import TechStack from "./TechStack";
 
 export default function BeaconShowcase() {
     return (
-        <section className="relative min-h-screen bg-gradient-to-b from-void via-[#0d0d14] to-void border-t border-white/5 pb-32">
+        <section id="beacon" className="relative min-h-screen bg-gradient-to-b from-void via-[#0d0d14] to-void border-t border-white/5 pb-32">
             {/* Ambient Backlights */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60vw] h-[40vh] bg-azure/5 blur-[120px] rounded-full pointer-events-none" />
 

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 
 const projects = [
     {
@@ -9,7 +10,7 @@ const projects = [
         desc: "AI-powered enterprise search system transforming 2,419+ chaotic documents into an intelligent, searchable knowledge base with 95% time savings.",
         tags: ["SPFx", "React", "TypeScript", "Azure OpenAI"],
         status: "Production",
-        github: "#beacon-showcase" // Internal link to showcase section
+        github: "#beacon" // Internal link to showcase section
     },
     {
         title: "Python Piano",
@@ -29,7 +30,7 @@ const projects = [
 
 export default function ProjectsGrid() {
     return (
-        <section className="py-32 px-6 bg-void relative">
+        <section id="github" className="py-32 px-6 bg-void relative">
             <div className="max-w-7xl mx-auto">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
@@ -56,20 +57,18 @@ export default function ProjectsGrid() {
                                     {p.status}
                                 </span>
                                 <div className="flex gap-4 text-white/40">
-                                    <a
-                                        href={p.github}
-                                        target={p.github.startsWith('http') ? '_blank' : '_self'}
-                                        rel="noopener noreferrer"
+                                    <InteractiveHoverButton
+                                        text="GitHub"
+                                        className="w-24 py-1 px-3 text-xs font-mono border-transparent bg-transparent text-white/60 hover:text-white"
                                         onClick={(e) => {
                                             if (p.github.startsWith('#')) {
                                                 e.preventDefault();
                                                 document.querySelector(p.github)?.scrollIntoView({ behavior: 'smooth' });
+                                            } else {
+                                                window.open(p.github, '_blank', 'noopener,noreferrer');
                                             }
                                         }}
-                                    >
-                                        <Github size={20} className="hover:text-white transition-colors cursor-pointer" />
-                                    </a>
-                                    <ExternalLink size={20} className="hover:text-white transition-colors cursor-pointer" />
+                                    />
                                 </div>
                             </div>
 
