@@ -20,55 +20,47 @@ export default function ScrollyCanvas({
 
     // Transform scroll (0-1) to frame index (0 to numFrames-1)
     const frameIndex = useTransform(scrollYProgress, [0, 1], [0, numFrames - 1]);
-    const [currentFrame, setCurrentFrame] = useState(0);
 
-    // Update current frame based on scroll
-    useMotionValueEvent(frameIndex, "change", (latest) => {
-        setCurrentFrame(Math.round(latest));
-    });
-
-    // Draw to canvas
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas || !imagesLoaded || images.length === 0) return;
-
+    const drawImageToCanvas = (canvas: HTMLCanvasElement, img: HTMLImageElement) => {
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
 
-        const img = images[currentFrame];
-        if (!img) return;
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
 
-        // Handle object-fit: cover logic
-        const drawImage = () => {
-            const canvasWidth = canvas.width;
-            const canvasHeight = canvas.height;
+        const imgRatio = img.width / img.height;
+        const canvasRatio = canvasWidth / canvasHeight;
 
-            const imgRatio = img.width / img.height;
-            const canvasRatio = canvasWidth / canvasHeight;
+        let renderWidth, renderHeight, offsetX, offsetY;
 
-            let renderWidth, renderHeight, offsetX, offsetY;
+        if (canvasRatio > imgRatio) {
+            renderWidth = canvasWidth;
+            renderHeight = canvasWidth / imgRatio;
+            offsetX = 0;
+            offsetY = (canvasHeight - renderHeight) / 2;
+        } else {
+            renderWidth = canvasHeight * imgRatio;
+            renderHeight = canvasHeight;
+            offsetX = (canvasWidth - renderWidth) / 2;
+            offsetY = 0;
+        }
 
-            if (canvasRatio > imgRatio) {
-                // Canvas is wider than image
-                renderWidth = canvasWidth;
-                renderHeight = canvasWidth / imgRatio;
-                offsetX = 0;
-                offsetY = (canvasHeight - renderHeight) / 2;
-            } else {
-                // Canvas is taller than image
-                renderWidth = canvasHeight * imgRatio;
-                renderHeight = canvasHeight;
-                offsetX = (canvasWidth - renderWidth) / 2;
-                offsetY = 0;
-            }
-
+        requestAnimationFrame(() => {
             ctx.clearRect(0, 0, canvasWidth, canvasHeight);
             ctx.drawImage(img, offsetX, offsetY, renderWidth, renderHeight);
-        };
+        });
+    };
 
-        requestAnimationFrame(drawImage);
+    // Draw directly to canvas bypassing React state for performance
+    useMotionValueEvent(frameIndex, "change", (latest) => {
+        if (!imagesLoaded || images.length === 0 || !canvasRef.current) return;
 
-    }, [currentFrame, images, imagesLoaded]);
+        const frame = Math.round(latest);
+        const img = images[frame];
+        if (!img) return;
+
+        drawImageToCanvas(canvasRef.current, img);
+    });
 
     // Handle Window Resize (Debounced for performance)
     useEffect(() => {
@@ -81,8 +73,10 @@ export default function ScrollyCanvas({
                     canvasRef.current.width = window.innerWidth;
                     canvasRef.current.height = window.innerHeight;
                     // Trigger redraw
-                    if (imagesLoaded && images[currentFrame]) {
-                        setCurrentFrame(prev => prev);
+                    if (imagesLoaded) {
+                        const frame = Math.round(frameIndex.get());
+                        const img = images[frame];
+                        if (img) drawImageToCanvas(canvasRef.current, img);
                     }
                 }
             }, 100); // 100ms debounce
@@ -94,13 +88,18 @@ export default function ScrollyCanvas({
         if (canvasRef.current) {
             canvasRef.current.width = window.innerWidth;
             canvasRef.current.height = window.innerHeight;
+            // Initial draw
+            if (imagesLoaded) {
+                const img = images[0];
+                if (img) drawImageToCanvas(canvasRef.current, img);
+            }
         }
 
         return () => {
             clearTimeout(resizeTimeout);
             window.removeEventListener("resize", handleResize);
         };
-    }, [imagesLoaded, currentFrame, images]);
+    }, [imagesLoaded, images, frameIndex]);
 
     return (
         <div className={cn("fixed inset-0 z-0 bg-void", className)}>

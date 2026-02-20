@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-text bg-void text-text-primary antialiased selection:bg-beacon-orange selection:text-white overflow-x-hidden w-full`}
+        className={`${inter.variable} ${jetbrainsMono.variable} font-text bg-void text-text-primary antialiased selection:bg-beacon-orange selection:text-white overflow-x-clip w-full`}
       >
         <AudioProvider>
           {children}

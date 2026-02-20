@@ -17,11 +17,11 @@ const NAV_LINKS = [
 
 const SECTION_IDS = ["about", "beacon", "github", "music", "connect"];
 
-function scrollTo(id: string) {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-}
-
 export default function Navbar() {
+    function scrollTo(id: string) {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }
+
     const { isPlaying, togglePlay } = useAudio();
     const [activeSection, setActiveSection] = useState<string>("");
     const [scrolled, setScrolled] = useState(false);
